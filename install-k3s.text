@@ -1,8 +1,10 @@
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=stable sh
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=v1.23.6+k3s1 sh
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 git clone https://github.com/insightcloud/devops.git
 cd devops
 kubectl create ns argocd
 kubectl create -f argocd-install.yaml
+kubectl patch deploy argocd-server -n argocd --type json -p '[{"op": "replace", "path": "/spec/template/spec/containers/0/command", "value": ["argocd-server", "--insecure", "--staticassets","/shared/app"]}]'
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 
+kubectl exec nexus3-nexus-repository-manager-6d664f45b6-tf682 -n nexus cat /nexus-data/admin.password
