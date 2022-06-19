@@ -15,7 +15,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: nexus3-nexus-repository-manager
+            name: nexus-nexus-repository-manager
             port:
               number: 8081
   tls:
