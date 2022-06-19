@@ -1,4 +1,4 @@
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=stable sh
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=v1.23.6+k3s1 sh
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 git clone https://github.com/insightcloud/devops.git
 cd devops
