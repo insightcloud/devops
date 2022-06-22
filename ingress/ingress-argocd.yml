@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-nexus
+  name: ingress-argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     name: in-cluster
-    namespace: nexus
+    namespace: argocd
     server: ''
   source:
-    path: ingress/nexus
+    path: ingress/argocd
     repoURL: 'https://github.com/insightcloud/devops.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
+      selfHeal: false
