@@ -15,10 +15,10 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: 80
+            name: guestbook-ui
             port:
               number: 80
   tls:
-    - secretName: nexus-tls
+    - secretName: guestbook-tls
       hosts:
         - guestbook.becloud.ro
