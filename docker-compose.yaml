@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik
+    container_name: traefik
+    command:
+      - "--providers.docker"
+      - "--certificatesResolvers.myresolver.acme.storage=/data/acme.json"
+      - "--certificatesresolvers.myresolver.acme.caServer=https://acme-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./data/traefik/:/data"
+    labels:
+      - "traefik.http.middlewares.httpsonly.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.httpsonly.redirectscheme.permanent=true"
+
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus
+    volumes:
+      - "./data/nexus:/nexus-data"
+    labels:
+      - "traefik.http.routers.nexus.rule=Host(`nexus.example.com`)"
+      - "traefik.http.routers.nexus.tls=true"
+      - "traefik.http.routers.nexus.tls.certresolver=myresolver"
+      - "traefik.http.routers.nexus.service=nexus-service"
+      - "traefik.http.services.nexus-service.loadBalancer.server.port=8081"
