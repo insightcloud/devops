@@ -8,3 +8,5 @@ kubectl patch deploy argocd-server -n argocd --type json -p '[{"op": "replace", 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 
 kubectl exec nexus3-nexus-repository-manager-6d664f45b6-tf682 -n nexus cat /nexus-data/admin.password
+kubectl run -it --image busybox:latest utils --restart=Never --rm
+

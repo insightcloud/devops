@@ -21,4 +21,4 @@ spec:
   tls:
     - secretName: traefik-tls
       hosts:
-        - k8s.becloud.ro
+        - k3s.becloud.ro
