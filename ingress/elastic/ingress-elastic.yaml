@@ -15,7 +15,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: quickstart-es-http
+            name: quickstart-kb-http
             port:
               number: 9200
   tls:
