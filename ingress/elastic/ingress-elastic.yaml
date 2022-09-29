@@ -9,7 +9,7 @@ metadata:
 spec:
   rules:
   - host: elastic.becloud.ro
-    https:
+    http:
       paths:
       - path: /
         pathType: Prefix
