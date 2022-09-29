@@ -7,13 +7,15 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/service.serversscheme: https
     traefik.ingress.kubernetes.io/frontend-entry-points: https
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
   - host: elastic.becloud.ro
     http:
       paths:
-      - path: /
+      - path: /login
+        pathType: Prefix
         backend:
           service:
             name: quickstart-kb-http
