@@ -17,7 +17,7 @@ spec:
           service:
             name: quickstart-kb-http
             port:
-              number: 9200
+              number: 5601
   tls:
     - secretName: elastic-tls
       hosts:
