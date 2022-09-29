@@ -19,7 +19,6 @@ spec:
             name: quickstart-kb-http
             port:
               number: 5601
-              scheme: https
   tls:
     - secretName: elastic-tls
       hosts:
