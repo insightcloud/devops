@@ -18,9 +18,9 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: quickstart-kb-http
+            name: kubeclarity-kubeclarity
             port:
-              number: 5601
+              number: 8080
   tls:
     - secretName: elastic-tls
       hosts:
