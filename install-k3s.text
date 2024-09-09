@@ -3,7 +3,7 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 git clone https://github.com/insightcloud/devops.git
 cd devops
 kubectl create ns argocd
-kubectl create -f argocd-install.yaml
+kubectl create -f argocd-install.yaml( kubectl apply -f argocd-install.yaml -n argocd)
 kubectl patch deploy argocd-server -n argocd --type json -p '[{"op": "replace", "path": "/spec/template/spec/containers/0/command", "value": ["argocd-server", "--insecure", "--staticassets","/shared/app"]}]'
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.11.0/cert-manager.yaml
